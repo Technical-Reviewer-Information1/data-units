@@ -84,7 +84,7 @@ with col2:
 if input_value > 0:
     results = convert_units(input_value, input_unit)
     conversion_table = create_conversion_table(results, input_unit)
-    st.dataframe(conversion_table, use_container_width=True)
+    st.dataframe(conversion_table, width='stretch')
 
 st.info("💡 **基本ルール**: 単位が1つ大きくなるごとに**1024**で割り、1つ小さくなるごとに**1024**を掛けます。")
 
@@ -110,7 +110,7 @@ st.subheader("ステップ2: 保存したいデータの入力")
 
 # Initialize session state for data entries
 if 'data_entries' not in st.session_state:
-    st.session_state.data_entries = [{"name": "写真", "size": 10, "unit": "MB", "count": 5000}]
+    st.session_state.data_entries = [{"name": "写真", "size": 10.0, "unit": "MB", "count": 5000}]
 
 # Display existing entries
 total_data_mb = 0
@@ -122,7 +122,7 @@ for i, entry in enumerate(st.session_state.data_entries):
         entry["name"] = st.text_input(f"データ名", value=entry["name"], key=f"name_{i}")
     
     with col2:
-        entry["size"] = st.number_input(f"サイズ", value=entry["size"], min_value=0.1, key=f"size_{i}")
+        entry["size"] = st.number_input(f"サイズ", value=float(entry["size"]), min_value=0.1, key=f"size_{i}")
     
     with col3:
         entry["unit"] = st.selectbox(f"単位", ["MB", "GB", "KB"], index=["MB", "GB", "KB"].index(entry["unit"]), key=f"unit_{i}")
@@ -144,7 +144,7 @@ for i, entry in enumerate(st.session_state.data_entries):
 
 # Add new data button
 if st.button("➕ さらにデータを追加"):
-    st.session_state.data_entries.append({"name": "新しいデータ", "size": 100, "unit": "MB", "count": 100})
+    st.session_state.data_entries.append({"name": "新しいデータ", "size": 100.0, "unit": "MB", "count": 100})
     st.rerun()
 
 st.subheader("ステップ3: 結果の判定")
