@@ -1,6 +1,8 @@
 import streamlit as st
 import pandas as pd
 
+st.set_page_config(page_title="情報量の単位変換", layout="wide")
+
 def convert_units(value, from_unit):
     """Convert data units to all other units"""
     # Define conversion to bytes
@@ -63,7 +65,7 @@ def create_conversion_table(results, base_unit):
     return pd.DataFrame(data)
 
 # Streamlit App
-st.title("情報量の単位変換 📊")
+st.title("情報量の単位変換（pp.146-147）")
 st.caption("Created by Dit-Lab.(Daiki ITO)")
 st.caption("Supported by Tomoaki ATSUMI")
 
