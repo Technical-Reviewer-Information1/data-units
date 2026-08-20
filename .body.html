@@ -1,0 +1,109 @@
+  <section class="step" id="step1">
+    <h2><span class="no">STEP 1</span>単位のはしご</h2>
+    <p class="desc">情報量の単位は<strong>1000倍ずつ</strong>大きくなります（1024倍とする流儀もあります）。</p>
+
+    <div class="panel">
+      <div class="ladder" id="ladder"></div>
+      <div class="grid c2" style="margin-top:16px">
+        <div>
+          <label class="fld" for="valIn">数値</label>
+          <input type="number" id="valIn" value="1" step="any">
+        </div>
+        <div>
+          <label class="fld" for="unitIn">単位</label>
+          <select id="unitIn" class="sel"></select>
+        </div>
+      </div>
+      <div class="tbl-scroll" style="margin-top:14px"><table class="tbl" id="convTable"></table></div>
+      <div class="note info" style="margin-top:12px">
+        <strong>1B（バイト）＝ 8bit（ビット）</strong>。B と b は別ものです。通信速度は bps（ビット毎秒）、ファイルの大きさは B（バイト）で表すのが普通です。
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step2">
+    <h2><span class="no">STEP 2</span>変換ドリル</h2>
+    <div class="panel">
+      <div class="qhead">
+        <span class="badge" id="dProgress">1 問目</span>
+        <span class="badge">正解 <span class="score" id="dScore">0</span> / <span class="score" id="dTotal">0</span></span>
+      </div>
+      <div class="card-q"><div class="q-scene" id="dText"></div></div>
+      <div class="choice4" id="dChoices"></div>
+      <div class="note" id="dFb" hidden style="margin-top:12px"></div>
+      <div class="btn-row" style="margin-top:12px"><button class="btn primary" id="dNext">次の問題</button></div>
+    </div>
+  </section>
+
+  <section class="step" id="step3">
+    <h2><span class="no">STEP 3</span>入るかどうかを計算する</h2>
+    <p class="desc">保存できるかどうかは<strong>単位をそろえてから比べる</strong>だけです。自分で数を変えて確かめましょう。</p>
+    <div class="panel">
+      <div class="grid c2">
+        <div>
+          <label class="fld" for="capV">保存できる容量：<span class="mono" id="capVv">256</span> <span id="capUnitLbl">GB</span></label>
+          <input type="range" id="capV" min="1" max="1000" step="1" value="256">
+          <label class="fld" style="margin-top:10px" for="fA">ファイル①のサイズ：<span class="mono" id="fAv">4</span> MB × <span class="mono" id="nAv">40000</span> 個</label>
+          <input type="range" id="fA" min="1" max="500" step="1" value="4">
+          <input type="range" id="nA" min="0" max="50000" step="100" value="40000" style="margin-top:6px">
+          <label class="fld" style="margin-top:10px" for="fB">ファイル②のサイズ：<span class="mono" id="fBv">200</span> MB × <span class="mono" id="nBv">600</span> 個</label>
+          <input type="range" id="fB" min="1" max="1000" step="1" value="200">
+          <input type="range" id="nB" min="0" max="2000" step="10" value="600" style="margin-top:6px">
+        </div>
+        <div>
+          <div class="metrics">
+            <div class="metric"><div class="k">合計サイズ</div><div class="v" id="totMb" style="font-size:1.3rem">—</div></div>
+            <div class="metric"><div class="k">容量に対する割合</div><div class="v" id="pct" style="font-size:1.3rem">—</div></div>
+          </div>
+          <div class="capbar"><i id="capBar"></i><div class="lim" id="capLim" style="left:100%"></div></div>
+          <div class="note" id="capNote" style="margin-top:12px"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="step4">
+    <h2><span class="no">STEP 4</span>本文の4つの記述を判定する</h2>
+    <p class="desc">それぞれ計算して、正しいかどうかを確かめましょう。</p>
+    <div class="panel">
+      <div class="tbl-scroll"><table class="tbl" id="judgeTable"></table></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn primary" id="showCalc">計算を表示する</button>
+        <button class="btn ghost" id="hideCalc">隠す</button>
+      </div>
+      <div class="note" id="judgeNote" style="margin-top:12px"></div>
+    </div>
+  </section>
+
+  <section class="step" id="step5">
+    <h2><span class="no">STEP 5</span>確認クイズ</h2>
+    <div class="panel">
+      <div class="qhead">
+        <span class="badge" id="qProgress">1 / 1</span>
+        <span class="badge">正解 <span class="score" id="qScore">0</span></span>
+      </div>
+      <div class="card-q"><div class="q-scene" id="qText"></div></div>
+      <div class="choice4" id="qChoices"></div>
+      <div class="note" id="qFb" hidden style="margin-top:12px"></div>
+      <div class="btn-row" style="margin-top:12px">
+        <button class="btn primary" id="qNext" disabled>次の問題</button>
+        <button class="btn ghost" id="qReset">最初から</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="step" id="glossary">
+    <h2><span class="no">用語</span>この節で出てくることば</h2>
+    <div id="glossBox"></div>
+  </section>
+
+  <section class="step">
+    <h2><span class="no">まとめ</span>単位変換のポイント</h2>
+    <ul style="margin:0;padding-left:1.2em;color:var(--ink-2);font-size:.92rem;line-height:2.05">
+      <li>大小関係は <span class="mono">1KB＜1MB＜1GB＜1TB</span>。1つ上がるごとに<strong>1000倍</strong>。</li>
+      <li>1B＝8bit。<strong>Bとbを取りちがえない</strong>。</li>
+      <li>「入るかどうか」は<strong>単位をそろえてから合計と比べる</strong>だけ。</li>
+      <li>個数×1個あたりのサイズ＝合計。<strong>MBに直してから足す</strong>と計算が楽。</li>
+      <li>1GB＝1000MBとするか1024MBとするかは問題文の指定に従う。</li>
+    </ul>
+  </section>
