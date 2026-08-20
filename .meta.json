@@ -4,7 +4,7 @@
  "pp": "pp.146-147",
  "lead": "K・M・G・T は1000倍ずつ。大きさの感覚と、実際に入るかどうかの計算を身につけましょう。",
  "scripts": [
-  "chart.js",
+  "tools.js",
   "terms.js",
   "app.js"
  ],
